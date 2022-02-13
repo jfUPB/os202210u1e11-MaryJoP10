@@ -22,8 +22,15 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
-
-
+    Event *re = this->head;
+    if(this->isEmpty != 0){
+        while(re != NULL){
+            if(*(re->eventName + 2) == *(name + 2) && *(re->eventName + 3) == *(name + 3)){
+                return re;
+            }
+            re = re->next;
+        }
+    }
     return NULL;
 }
 
