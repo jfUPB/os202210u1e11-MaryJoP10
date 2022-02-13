@@ -29,6 +29,25 @@ Event *SearchEvent(EventList *this, char *name)
 
 void AddEvent(EventList *this, Event *event)
 {
+    Event *re = this->head;
+    if (this->isEmpty != 0)
+    {
+        while (re != NULL)
+        {
+            if (*(re->eventName + 2) == *(event->eventName + 2) && *(re->eventName + 3) == *(event->eventName + 3)){
+                return;
+            }
+            re = re->next;
+        }
+        this->last->next = event;
+        this->last = event;
+    }
+    else
+    {
+        this->head = event;
+        this->last = event;
+        this->isEmpty = 1;
+    }
 
 }
 
