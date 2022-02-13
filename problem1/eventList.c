@@ -60,6 +60,30 @@ void AddEvent(EventList *this, Event *event)
 
 void RemoveEvent(EventList *this, char *name)
 {
+    Event *re = this->head;
+    Event *nre = SearchEvent(this, name);
+    if(nre == NULL){
+        return;
+    }
+    if(this->isEmpty == 0){
+        return;
+    }
+    else{
+        while(re != NULL){
+            if(*(this->head->eventName + 2) == *(name + 2)){
+                this->head = this->head->next;
+                break;
+            }
+            else if(*(re->next->eventName + 2) == *(name + 2)){
+                re->next = re->next->next;
+                break;
+            }
+            re = re->next;
+        }
+        if(this->head == NULL){
+            this->isEmpty = 0;
+        }
+    }
 }
 
 void ListEvents(EventList *this)
